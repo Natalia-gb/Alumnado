@@ -13,23 +13,29 @@
                 <th>Dirección</th>
                 <th>Acciones</th>
             </tr>
-            @foreach ($students as $student)
+            @foreach($students as $student)
                 <tr class='text-center'>
                     <td>{{$student->dni}}</td>
                     <td>{{$student->name}}</td>
                     <td>{{$student->phone}}</td>
                     <td>{{$student->address}}</td>
                     <td>
-                        <button class="btn btn-success">Ver</button>
-                        <a href="{{ route('editStudent', $student->dni )}}">
-                            <button class='btn btn-info'>Editar alumno</button>
+                        <a href="{{route('viewStudent', $student->dni)}}">
+                            <button class="btn btn-success">Ver</button>
                         </a>
-                        <button class="btn btn-danger">Eliminar</button>
+                        <a href="{{ route('editStudent', $student->dni )}}">
+                            <button class='btn btn-info'>Editar</button>
+                        </a>
+                        <form action="{{route('deleteStudent')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="dni" value="{{$student->dni}}">
+                            <button class="btn btn-danger">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
         </table>
 
-        <a href="{{ route('modules') }}"><button class="btn btn-info">Ver</button></a>
+        <a href="{{ route('modules') }}"><button class="btn btn-info">Ver Módulos</button></a>
     </body>
 </html>

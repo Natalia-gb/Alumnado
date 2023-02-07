@@ -15,17 +15,10 @@
 
         <form action="{{ route('updateStudent', $student[0]->dni) }}" method='GET'>
             @csrf
+            <input type="hidden" value="{{$student[0]->dni}}" name="dni">
             <input type="text" name='name' value="{{ $student[0]->name }}">
             <input type="number" name='phone' value="{{ $student[0]->phone }}">
             <input type="text" name='address' value="{{ $student[0]->address }}">
-            @foreach ($modules as $module)
-            <p name="name">{{$module->name}}</p>
-                @foreach ($evaluations as $evaluation)
-                    @if($evaluation->idModule)
-                        <input type="number" value="{{ $evaluation->note }}" name="note">
-                    @endif
-                @endforeach
-            @endforeach
             <button class="btn btn-primary">Guardar cambios</button>
         </form>
     </body>

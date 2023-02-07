@@ -23,4 +23,11 @@ Route::get('editStudent/{dni}', 'StudentController@edit') -> name('editStudent')
 
 Route::get('updateStudent/{dni}', 'StudentController@update') -> name('updateStudent');
 
+Route::post('deleteStudent', 'StudentController@deleteStudent')->name('deleteStudent');
+
 Route::get('/modules', 'ModuleController@index') -> name('modules');
+
+Route::get('/viewStudent/{dni}', 'StudentController@viewStudent') -> name('viewStudent');
+
+Route::get('updateModule/{id}', 'ModuleController@update') -> name('updateModule');
+

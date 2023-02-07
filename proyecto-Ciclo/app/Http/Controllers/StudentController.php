@@ -14,11 +14,7 @@ class StudentController extends Controller
 
     public function edit($dni) {
         $student = Student::where('dni', $dni)->get();
-        $modules = Student::find($dni)->modules;
-        $evaluations = Student::find($dni)->evaluations;
-        var_dump($modules);
-        var_dump($evaluations);
-        return view('editStudent', ['student' => $student, 'modules' => $modules, 'evaluations' => $evaluations]);
+        return view('editStudent', ['student' => $student]);
     }
 
     public function update(Request $r) {
@@ -38,7 +34,23 @@ class StudentController extends Controller
             'phone' => $phone,
             'address' => $address
         ]);
+        
+        $student = Student::where('dni', $dni)->get();
+        $modules = Student::find($dni)->modules;
+        $evaluations = Student::find($dni)->evaluations;
+        return view('viewStudent', ["student" => $student, "modules" => $modules, "evaluations" => $evaluations]);
+    }
 
+    public function deleteStudent(){
+        $dni = request('dni');
+        Student::destroy($dni);
         return redirect()->action([StudentController::class, 'index']);
+    }
+
+    public function viewStudent($dni){
+        $student = $student = Student::where('dni', $dni)->get();
+        $modules = Student::find($dni)->modules;
+        $evaluations = Student::find($dni)->evaluations;
+        return view('viewStudent', ["student" => $student, "modules" => $modules, "evaluations" => $evaluations]);
     }
 }
