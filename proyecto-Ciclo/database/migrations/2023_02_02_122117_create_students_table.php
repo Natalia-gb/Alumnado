@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('alumnado', function (Blueprint $table) {
-            $table->string('DNI');
+        Schema::create('students', function (Blueprint $table) {
+            $table->string('dni');
             $table->string('name');
             $table->string('phone');
             $table->string('address');
-            $table->primary(['DNI']);
+            $table->primary(['dni']);
         });
     }
 

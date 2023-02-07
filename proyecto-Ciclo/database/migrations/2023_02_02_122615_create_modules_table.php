@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('modulo', function (Blueprint $table) {
+        Schema::create('modules', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('credits');
-            $table->integer('weekly hours');
+            $table->integer('weeklyHours');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modulo');
+        Schema::dropIfExists('modules');
     }
 };

@@ -17,4 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/alumnado', 'AlumnadoController@index') -> name('alumnado');
+Route::get('/students', 'StudentController@index') -> name('students');
+
+Route::get('editStudent/{dni}', 'StudentController@edit') -> name('editStudent');
+
+Route::get('updateStudent/{dni}', 'StudentController@update') -> name('updateStudent');
+
+Route::get('/modules', 'ModuleController@index') -> name('modules');

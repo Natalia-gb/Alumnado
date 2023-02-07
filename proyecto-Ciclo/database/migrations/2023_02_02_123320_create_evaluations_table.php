@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('evaluation', function (Blueprint $table) {
-            $table->string('DNI');
-            $table->unsignedBigInteger('idModulo');
+        Schema::create('evaluations', function (Blueprint $table) {
+            $table->string('dni');
+            $table->unsignedBigInteger('idModule');
             $table->double('note');
             $table->dateTime('evaluationDate');
-            $table->primary(['DNI', 'idModulo']);
-            $table->foreign('DNI')->references('DNI')->on('alumnado')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('idModulo')->references('id')->on('modulo')->onUpdate('cascade')->onDelete('cascade');
+            $table->primary(['dni', 'idModule']);
+            $table->foreign('dni')->references('dni')->on('students')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('idModule')->references('id')->on('modules')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluation');
+        Schema::dropIfExists('evaluations');
     }
 };

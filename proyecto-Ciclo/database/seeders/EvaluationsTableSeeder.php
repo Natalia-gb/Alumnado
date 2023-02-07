@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class EvaluationTableSeeder extends Seeder
+class EvaluationsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,16 +15,16 @@ class EvaluationTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('evaluation')->insert([
+        DB::table('evaluations')->insert([
             'DNI' => '47433952V',
-            'idModulo' => '1',
+            'idModule' => '1',
             'note' => 8.0,
             'evaluationDate' => '2022-12-22'
         ]);
 
-        DB::table('evaluation')->insert([
+        DB::table('evaluations')->insert([
             'DNI' => '44563335P',
-            'idModulo' => '2',
+            'idModule' => '2',
             'note' => '6',
             'evaluationDate' => '2022-12-22'
         ]);
