@@ -10,6 +10,7 @@ class Module extends Model
     use HasFactory;
     public $timestamps = false;
     protected $primaryKey = 'id';
+    protected $fillable = array('id', 'name', 'credits', 'weeklyHours');
 
     public function students(){
         return $this->belongsToMany('App\Models\Student', 'evaluations', 'idModule', 'dni');

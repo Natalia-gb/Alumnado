@@ -5,6 +5,9 @@
         <title>Módulos</title>
     </head>
     <body class="container mt-5">
+        <a href="{{route('createModule')}}">
+            <button class="btn btn-success mb-3">Crear módulo</button>
+        </a>
         <table class="table table-secondary table-striped">
             <tr class="text-center">
                 <th>Nombre</th>
@@ -18,9 +21,18 @@
                     <td>{{$module->credits}}</td>
                     <td>{{$module->weeklyHours}}</td>
                     <td>
-                        <button class="btn btn-success">Ver</button>
-                        <button class="btn btn-info">Editar</button>
-                        <button class="btn btn-danger">Eliminar</button>
+                        <a href="{{ route('viewModule', $module->id) }}">
+                            <button class="btn btn-success">Ver</button>
+                        </a>
+                        
+                        <a href="{{route('editModule', $module->id)}}">
+                            <button class="btn btn-info">Editar</button>
+                        </a>
+                        <form action="{{route('deleteModule')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $module->id }}">
+                            <button class="btn btn-danger">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

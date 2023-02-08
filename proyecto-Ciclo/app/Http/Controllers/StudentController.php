@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Module;
 
 class StudentController extends Controller
 {
@@ -52,5 +53,21 @@ class StudentController extends Controller
         $modules = Student::find($dni)->modules;
         $evaluations = Student::find($dni)->evaluations;
         return view('viewStudent', ["student" => $student, "modules" => $modules, "evaluations" => $evaluations]);
+    }
+
+    public function create(){
+        $modules = Module::all();
+        return view("createStudent", ['modules' => $modules]);
+    }
+
+    public function make(Request $request){
+        request()->validate([
+            'name' => 'required',
+            'phone' => 'required|integer|min:600000000|max:999999999',
+            'address' => 'required',
+            'modules' => 'required'
+        ]);
+
+
     }
 }

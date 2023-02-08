@@ -5,6 +5,9 @@
         <title>Alumnado</title>
     </head>
     <body class='container mt-5'>
+        <a href="{{route('createStudent')}}">
+            <button class="btn btn-primary">Crear alumno</button>
+        </a>
         <table class='table table-secondary table-striped'>
             <tr class="text-center">
                 <th>DNI</th>
