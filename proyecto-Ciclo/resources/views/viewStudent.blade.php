@@ -15,14 +15,18 @@
         <p>Teléfono: {{$student[0]->phone}}</p>
         <p>{{$student[0]->address}}</p>
     </div>
-    
-    @foreach($modules as $module)
-        @foreach($evaluations as $evaluation)
-            @if($evaluation->idModule == $module->id)
-                <p>{{$module->name}} - {{$evaluation->note}} ({{date("d-m-Y", strtotime("$evaluation->evaluationDate"))}})</p>
-            @endif
+
+    @if(isset($evaluations))
+        @foreach($modules as $module)
+            @foreach($evaluations as $evaluation)
+                @if($evaluation->idModule == $module->id && $evaluation->evaluationDate != "1111-11-11")
+                    <p>{{$module->name}} - {{$evaluation->note}} <input type="date" value="{{$evaluation->evaluationDate}}" /></p>
+                @endif
+            @endforeach
         @endforeach
-    @endforeach
+    @else
+        <p>No existe</p>
+    @endif
 
     <a href="{{route('students')}}"><button class="btn btn-primary">Volver</button></a>
 </body>

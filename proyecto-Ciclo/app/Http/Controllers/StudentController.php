@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Module;
+use App\Models\Evaluation;
 
 class StudentController extends Controller
 {
@@ -49,7 +50,7 @@ class StudentController extends Controller
     }
 
     public function viewStudent($dni){
-        $student = $student = Student::where('dni', $dni)->get();
+        $student = Student::where('dni', $dni)->get();
         $modules = Student::find($dni)->modules;
         $evaluations = Student::find($dni)->evaluations;
         return view('viewStudent', ["student" => $student, "modules" => $modules, "evaluations" => $evaluations]);
@@ -62,12 +63,29 @@ class StudentController extends Controller
 
     public function make(Request $request){
         request()->validate([
+            'dni' => 'required',
             'name' => 'required',
             'phone' => 'required|integer|min:600000000|max:999999999',
             'address' => 'required',
             'modules' => 'required'
         ]);
 
+        $student = new Student;
+        $student -> dni = request('dni');
+        $student -> name = request('name');
+        $student -> phone = request('phone');
+        $student -> address = request('address');
+        $student->save();
 
+        foreach($request->modules as $moduleId){
+            $evaluation = new Evaluation;
+            $evaluation -> dni = request('dni');
+            $evaluation -> idModule = $moduleId;
+            $evaluation -> note = 0;
+            $evaluation -> evaluationDate = '1111-11-11';
+            $evaluation->save();
+        }
+
+        return redirect()->action([StudentController::class, 'index']);
     }
 }

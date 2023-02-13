@@ -15,6 +15,7 @@
 
         <form action="{{ route('makeStudent') }}" method='GET'>
             @csrf
+            <label>DNI: <input type="text" name='dni'></label>
             <label>Nombre: <input type="text" name='name'></label>
             <label>Teléfono: <input type="number" name='phone'></label>
             <label>Dirección:  <input type="text" name='address'></label>

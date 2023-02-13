@@ -9,6 +9,7 @@ class Student extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    public $incrementing = false; 
     protected $fillable = array('dni', 'name', 'phone', 'address');
     protected $primaryKey = 'dni';
     
