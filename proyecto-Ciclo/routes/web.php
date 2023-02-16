@@ -48,3 +48,12 @@ Route::get('createModule', 'ModuleController@create') -> name('createModule');
 
 Route::post('makeModule', 'ModuleController@make') -> name('makeModule');
 
+
+// Evaluations
+Route::get('createEvaluation/{idModule}', 'EvaluationController@create') -> name('createEvaluation');
+
+Route::post('makeEvaluation/{id}', 'EvaluationController@make') -> name('makeEvaluation');
+
+Route::get('editEvaluation/{evaluationDate}', 'EvaluationController@edit') -> name('editEvaluation');
+
+Route::post('updateEvaluation/{evaluationDate}', 'EvaluationController@update') -> name('updateEvaluation');

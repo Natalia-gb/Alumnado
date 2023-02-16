@@ -9,13 +9,13 @@ class Student extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    public $incrementing = false; 
+    public $incrementing = false;
     protected $fillable = array('dni', 'name', 'phone', 'address');
     protected $primaryKey = 'dni';
     
 
     public function modules(){
-        return $this->belongsToMany('App\Models\Module', 'evaluations', 'dni', 'idModule');
+        return $this->belongsToMany('App\Models\Module', 'enrollments', 'dni', 'idModule');
     }
     
     public function evaluations(){

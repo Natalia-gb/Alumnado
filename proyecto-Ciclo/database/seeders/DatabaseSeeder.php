@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(StudentsTableSeeder::class);
-        $this->call(ModulesTableSeeder::class); 
+        $this->call(ModulesTableSeeder::class);
+        $this->call(EnrollmentsTableSeeder::class);
         $this->call(EvaluationsTableSeeder::class);
     }
 }

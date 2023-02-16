@@ -13,6 +13,6 @@ class Module extends Model
     protected $fillable = array('id', 'name', 'credits', 'weeklyHours');
 
     public function students(){
-        return $this->belongsToMany('App\Models\Student', 'evaluations', 'idModule', 'dni');
+        return $this->belongsToMany('App\Models\Student', 'enrollments', 'idModule', 'dni');
     }
 }

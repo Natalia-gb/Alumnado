@@ -61,7 +61,7 @@ class ModuleController extends Controller
         request()->validate([
             'name' => 'required',
             'credits' => 'required|integer|min:0|max:350',
-            'weeklyHours' => 'required|integer|min:1|max:7',
+            'weeklyHours' => 'required|integer',
         ]);
 
         Module::create($request->all());

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Module;
 use App\Models\Evaluation;
+use App\Models\Enrollment;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
@@ -50,6 +52,7 @@ class StudentController extends Controller
     }
 
     public function viewStudent($dni){
+        Session::put('dni', $dni);
         $student = Student::where('dni', $dni)->get();
         $modules = Student::find($dni)->modules;
         $evaluations = Student::find($dni)->evaluations;
@@ -78,12 +81,10 @@ class StudentController extends Controller
         $student->save();
 
         foreach($request->modules as $moduleId){
-            $evaluation = new Evaluation;
-            $evaluation -> dni = request('dni');
-            $evaluation -> idModule = $moduleId;
-            $evaluation -> note = 0;
-            $evaluation -> evaluationDate = '1111-11-11';
-            $evaluation->save();
+            $enrollment = new Enrollment;
+            $enrollment -> dni = request('dni');
+            $enrollment -> idModule = $moduleId;
+            $enrollment->save();
         }
 
         return redirect()->action([StudentController::class, 'index']);

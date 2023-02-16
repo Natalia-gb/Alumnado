@@ -4,7 +4,7 @@
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js' integrity='sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN' crossorigin='anonymous'></script>
         <title>Crear Estudiante</title>
     </head>
-    <body>
+    <body class="container">
         @if ($errors->any())
             @foreach ($errors->all() as $error)
             <div class="alert alert-warning mt-5" role="alert">
@@ -15,14 +15,17 @@
 
         <form action="{{ route('makeStudent') }}" method='GET'>
             @csrf
-            <label>DNI: <input type="text" name='dni'></label>
-            <label>Nombre: <input type="text" name='name'></label>
-            <label>Teléfono: <input type="number" name='phone'></label>
-            <label>Dirección:  <input type="text" name='address'></label>
-            <button class="btn btn-primary">Añadir</button>
+            <label class="form-label">DNI: <input type="text" name='dni' class="form-control"></label>
+            <label class="form-label">Nombre: <input type="text" name='name'class="form-control"></label>
+            <label class="form-label">Teléfono: <input type="number" name='phone' class="form-control"></label>
+            <label class="form-label">Dirección:  <input type="text" name='address' class="form-control"></label>
+            
+            <div class="card mb-4" style="width:20em">
             @foreach($modules as $module)
-                <input type="checkbox" name="modules[]" value="{{ $module->id }}" /> {{ $module->name }}
+            <label class="form-check-label text-card"><input type="checkbox" name="modules[]" value="{{ $module->id }}" class="form-check-input"/> {{ $module->name }}</label>
             @endforeach
+            </div>
+            <button class="btn btn-primary">Añadir</button>
         </form>
     </body>
 </html>
